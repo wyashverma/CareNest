@@ -5,13 +5,15 @@ import { Button } from '@/components/ui/Button';
 import { popularCities } from '@/data/locations';
 import { useUserLocation } from '@/hooks/useUserLocation';
 import { useToast } from '@/hooks/useToast';
+import { cn } from '@/utils/cn';
 
 /**
  * Location picker (MOCK): city list, pincode entry and "use current location".
  * "Current location" does not call the browser geolocation API yet. When a real
  * backend exists, request permission only inside that button's click handler.
  */
-export function LocationSelector({ align = 'left' }: { align?: 'left' | 'right' }) {
+export function LocationSelector({ align = 'left', variant = 'plain' }: { align?: 'left' | 'right'; variant?: 'plain' | 'field' }) {
+  const field = variant === 'field';
   const { location, setLocation } = useUserLocation();
   const { showToast } = useToast();
   const [cityQuery, setCityQuery] = useState('');
@@ -39,12 +41,13 @@ export function LocationSelector({ align = 'left' }: { align?: 'left' | 'right' 
     <Dropdown
       label={`Change location. Current: ${location?.label ?? 'not set'}`}
       align={align}
-      triggerClassName="h-11 px-3 text-sm font-medium text-ink"
+      className={field ? 'w-full sm:w-52' : undefined}
+      triggerClassName={cn('px-3 text-sm font-medium text-ink', field ? 'h-12 w-full' : 'h-11')}
       panelClassName="w-[22rem] p-4"
       trigger={
         <>
           <MapPin className="h-5 w-5 text-brand-600" aria-hidden="true" />
-          <span className="max-w-[9rem] truncate">{location?.label ?? 'Select location'}</span>
+          <span className={cn('truncate text-left', field ? 'flex-1' : 'max-w-[9rem]')}>{location?.label ?? 'Select location'}</span>
           <ChevronDown className="h-4 w-4 text-muted" aria-hidden="true" />
         </>
       }

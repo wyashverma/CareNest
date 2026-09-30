@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { CalendarDays, Menu, Search, ShoppingCart, X } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Logo } from '@/components/ui/Logo';
-import { SearchBar } from '@/components/search/SearchBar';
+import { GlobalSearch } from '@/components/search/GlobalSearch';
 import { LocationSelector } from '@/components/location/LocationSelector';
 import { NotificationDropdown } from './NotificationDropdown';
 import { ProfileMenu } from './ProfileMenu';
@@ -30,7 +30,7 @@ export function Navbar({ onOpenMenu }: { onOpenMenu: () => void }) {
           </Link>
 
           <div className="mx-2 hidden max-w-xl flex-1 md:block">
-            <SearchBar />
+            <GlobalSearch />
           </div>
 
           <div className="ml-auto flex items-center gap-0.5">
@@ -69,7 +69,7 @@ export function Navbar({ onOpenMenu }: { onOpenMenu: () => void }) {
 
         {/* Mobile: expandable search + location strip */}
         <div className="pb-3 md:hidden">
-          {searchOpen && <SearchBar autoFocus className="mb-2" />}
+          {searchOpen && <GlobalSearch autoFocus className="mb-2" />}
           <LocationSelector align="left" />
         </div>
       </Container>

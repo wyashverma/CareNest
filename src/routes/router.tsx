@@ -6,6 +6,7 @@ import { ProtectedRoute } from './ProtectedRoute';
 import RouteError from '@/pages/RouteError';
 
 // Route-level code splitting: each page is its own chunk.
+const SearchResultsPage = lazy(() => import('@/pages/search/SearchResultsPage'));
 const HomePage = lazy(() => import('@/pages/home/HomePage'));
 const MedicinesPage = lazy(() => import('@/pages/medicines/MedicinesPage'));
 const MedicineDetailPage = lazy(() => import('@/pages/medicines/MedicineDetailPage'));
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
         children: [
           // Public
           { index: true, element: <HomePage /> },
+          { path: 'search', element: <SearchResultsPage /> },
           { path: 'medicines', element: <MedicinesPage /> },
           { path: 'medicines/:id', element: <MedicineDetailPage /> },
           { path: 'doctors', element: <DoctorsPage /> },

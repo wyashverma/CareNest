@@ -6,12 +6,13 @@ interface DropdownProps {
   label: string;
   trigger: ReactNode;
   align?: 'left' | 'right';
+  className?: string;
   triggerClassName?: string;
   panelClassName?: string;
   children: ReactNode | ((close: () => void) => ReactNode);
 }
 
-export function Dropdown({ label, trigger, align = 'right', triggerClassName, panelClassName, children }: DropdownProps) {
+export function Dropdown({ label, trigger, align = 'right', className, triggerClassName, panelClassName, children }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -38,7 +39,7 @@ export function Dropdown({ label, trigger, align = 'right', triggerClassName, pa
   }, [open]);
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className={cn('relative', className)}>
       <button
         ref={buttonRef}
         type="button"

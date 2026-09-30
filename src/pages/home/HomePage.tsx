@@ -1,5 +1,13 @@
-import ComingSoonPage from '@/pages/ComingSoonPage';
+import { Hero } from '@/sections/home/Hero';
+import { QuickServices } from '@/sections/home/QuickServices';
+import { Highlights } from '@/sections/home/Highlights';
 
 export default function HomePage() {
-  return <ComingSoonPage title="Healthcare, all in one place" description="Homepage with search, location and quick access to every service." step={3} />;
+  return (
+    <>
+      <Hero />
+      <QuickServices />
+      <Highlights />
+    </>
+  );
 }

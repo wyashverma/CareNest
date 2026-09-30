@@ -8,13 +8,14 @@ interface DrawerProps {
   onClose: () => void;
   title: string;
   side?: 'left' | 'right';
+  closeLabel?: string;
   children: ReactNode;
 }
 
 const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])';
 
 /** Accessible side drawer: focus moves in, Tab is trapped, Escape closes, focus returns to the trigger. */
-export function Drawer({ open, onClose, title, side = 'left', children }: DrawerProps) {
+export function Drawer({ open, onClose, title, side = 'left', closeLabel = 'Close menu', children }: DrawerProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export function Drawer({ open, onClose, title, side = 'left', children }: Drawer
       >
         <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-4">
           <h2 className="text-lg">{title}</h2>
-          <button type="button" onClick={onClose} aria-label="Close menu" className="rounded-md p-2 text-muted hover:bg-surface">
+          <button type="button" onClick={onClose} aria-label={closeLabel} className="rounded-md p-2 text-muted hover:bg-surface">
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
